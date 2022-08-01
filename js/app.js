@@ -31,12 +31,20 @@ function addCourseDataCart(course) {
         quantity: 1
     }
 
-    console.log(COURSE_DATA);
-    
-    // Add course to the shopping cart array
-    coursesCart = [...coursesCart, COURSE_DATA];
+    console.log('courseObj => ', COURSE_DATA);
+
+    // Check if the course is already in the cart
+    if ( coursesCart.some( c => c.id === COURSE_DATA.id) ) {
+        const courseToIncrement = coursesCart.find( c => c.id === COURSE_DATA.id);
+        courseToIncrement.quantity = courseToIncrement.quantity + 1;
+    } else {
+        // Add course to the shopping cart 
+        coursesCart = [...coursesCart, COURSE_DATA];
+    }
+
     // Print shopping cart
     cartHTML();
+    console.log('-------------');
 }
 
 function cartHTML () {
@@ -45,11 +53,19 @@ function cartHTML () {
     
     coursesCart.forEach( course => {
         const TR = document.createElement('tr');
+
+        const { img, name, price, quantity } = course;
+
         TR.innerHTML =  `
-            <td>${ course.img }</td>
-            <td>${ course.name }</td>
-            <td>${ course.price }</td>
-            <td>${ course.quantity }</td>
+            <td>
+                <img src="${ img}" width="100">
+            </td>
+            <td>${ name }</td>
+            <td>${ price }</td>
+            <td>${ quantity }</td>
+            <td>
+                <a href="#" class="delete-course" data-id="${ course.id }"> X </a>
+            </td>
         `;
         
         CART_LIST.appendChild(TR);
