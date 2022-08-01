@@ -9,3 +9,5 @@ _Basic shopping cart project using JS, DOM, events etc.._
 2. Remove courses from the shopping cart.
 
 3. Add same courses to the shopping cart but incrementing the quantity.
+
+4. Empty the shopping cart.

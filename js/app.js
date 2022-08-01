@@ -8,7 +8,15 @@ const COURSES_LIST = document.querySelector('#courses-list');
 let coursesCart = [];
 
 function registerEventListeners() {
+    // Add course
     COURSES_LIST.addEventListener('click', addCourse);
+
+    // Delete course
+    CART.addEventListener('click', deleteCourse);
+
+    // Empty cart
+    EMPTY_CART_BTN.addEventListener('click', emptyCart);
+    
 }
 
 function addCourse(e) {
@@ -20,6 +28,23 @@ function addCourse(e) {
         
     }
 }
+
+function deleteCourse(e) {
+    if( e.target.classList.contains('delete-course') ) {
+
+        // Remove course from the cart (Array)
+        const courseId = e.target.getAttribute('data-id');
+        coursesCart = coursesCart.filter( course => course.id !== courseId );
+        // Print the cart updated
+        cartHTML();
+    }
+}
+
+function emptyCart() {
+    coursesCart = [];
+    cartHTML();
+}
+
 
 function addCourseDataCart(course) {
 
