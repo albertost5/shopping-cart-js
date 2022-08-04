@@ -17,6 +17,15 @@ function registerEventListeners() {
     // Empty cart
     EMPTY_CART_BTN.addEventListener('click', emptyCart);
     
+    // localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const coursesLocalStorage = localStorage.getItem( 'courses' ); 
+        if( coursesLocalStorage ) {
+            coursesCart = JSON.parse( coursesLocalStorage );
+            cartHTML();
+        }
+    });
 }
 
 function addCourse(e) {
@@ -95,6 +104,8 @@ function cartHTML () {
         
         CART_LIST.appendChild(TR);
     });
+
+    syncLocalStorage();
 }
 
 function cleanCartHTML() {
@@ -103,6 +114,10 @@ function cleanCartHTML() {
     while( CART_LIST.firstChild ) {
         CART_LIST.removeChild( CART_LIST.firstChild );
     }
+}
+
+function syncLocalStorage() {
+    localStorage.setItem( 'courses', JSON.stringify( coursesCart ) );
 }
 
 

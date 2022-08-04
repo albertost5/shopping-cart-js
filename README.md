@@ -11,3 +11,5 @@ _Basic shopping cart project using JS, DOM, events etc.._
 3. Add same courses to the shopping cart but incrementing the quantity.
 
 4. Empty the shopping cart.
+
+5. Added localStorage functionality to dont lose the sopphing cart after a page refresh.
